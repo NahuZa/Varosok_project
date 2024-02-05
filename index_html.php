@@ -16,7 +16,7 @@
 
     <form>
         <h2>Válassza ki a megyét:</h2> 
-            <button>Nógrád</button><!--Példa-->
+            <button>Nógrád(GYENGE)</button><!--Példa-->
             <button>Pest</button><!--Példa-->
             <button>Borsod</button><!--Példa-->
             <button>Somogy</button><!--Példa-->
