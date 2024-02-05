@@ -14,13 +14,21 @@
         </div>
     </header>
 
-    <form>
-        <h2>Válassza ki a megyét:</h2> 
-            <button>Nógrád(GYENGE)</button><!--Példa-->
-            <button>Pest</button><!--Példa-->
-            <button>Borsod</button><!--Példa-->
-            <button>Somogy</button><!--Példa-->
-            <!-- összes megye mint egy gomb szépen sorban? => táblából kiirás => kattintásra azoknak a települáseit sorolja be egymás alá => cars/makers-->
-    </form>
+    <h2>Válassza ki a megyét:</h2> 
+
+    <?php
+
+    require_once('osztaly.php');
+    require_once('index.php');
+
+   $tabla=new osztaly();
+
+   $megyek=$tabla->counties();
+
+   foreach ($megyek as $megye)
+   {
+    echo "<button> " . $megye . "</button><br>"; 
+   }
+    ?>
 </body>
 </html>
