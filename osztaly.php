@@ -25,7 +25,7 @@ class Osztaly{
 
         public function varosok($id)
         {
-            $query="SELECT city FROM cities WHERE countyId=$id ORDER BY city";  
+            $query="SELECT city,zip_code FROM citiescodes WHERE countyId=$id ORDER BY city";  
 
             return $this->mysqli->query($query)->fetch_all(MYSQLI_ASSOC);
         }
@@ -46,7 +46,7 @@ class Osztaly{
 
         public function getCityByCh($ch): array
         {
-            $query="SELECT city,zip_code FROM citiescodes WHERE city LIKE '$ch%' ORDER BY city";
+            $query="SELECT city,zip_code FROM citiescodes WHERE city LIKE '$ch%' /*AND countyId = $id*/ ORDER BY city";
             
             return $this->mysqli->query($query)->fetch_all(MYSQLI_ASSOC);
         }
