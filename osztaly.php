@@ -24,13 +24,11 @@ class Osztaly{
         }
 
 
-        public function varosok()
+        public function varosok($id)
         {
-            $id = $_POST['megye-button'];
-            echo $id;
-            /*$query="SELECT city FROM cities WHERE countyId=$id";  
+            $query="SELECT city FROM cities WHERE countyId=$id ORDER BY city";  
 
-            return $this->mysqli->query($query)->fetch_all(MYSQLI_ASSOC);*/
+            return $this->mysqli->query($query)->fetch_all(MYSQLI_ASSOC);
         }
 }
 

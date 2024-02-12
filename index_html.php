@@ -23,28 +23,38 @@
    $tabla=new osztaly();
 
    $megyek=$tabla->counties();
-
    
-   foreach ($megyek as $megye)
-   {
-    echo '<form method="post" action="">'
-    .'<tr>'
-        .'<td> <button class="button" value='.$megye['countyId'].'name="megye-button">'.$megye['county'].'</button> </td>'
-        . '<td><div style="display: flex">'
-        . '</div></td>'
-    . '</tr></form>';
-   }
 
-   $varosok = $tabla->varosok();
-   /*foreach ($varosok as $varos)
-   {
-    echo '<form method="POST" action="">'
-    .'<tr>'
-        .'<td>'.$varos['city'].'</td>'
-        . '<td><div style="display: flex">'
-        . '</div></td>'
-    . '</tr></form>';
-   }*/
+
+    foreach ($megyek as $megye)
+    {
+     echo '<form method="POST" action="">'
+     .'<tr>'
+         .'<td> <button class="button" value="'.$megye['countyId'].'" name="megye-button">'.$megye['county'].'</button> </td>'
+         . '<td><div style="display: flex">'
+         . '</div></td>'
+     . '</tr></form>';
+    }
+ 
+    if (isset($_POST['megye-button'])) {
+        $id =$_POST['megye-button'];
+        $varosok = $tabla->varosok($id);
+        foreach ($varosok as $varos)
+        {
+         echo '<form method="POST" action="">'
+         .'<tr>'
+             .'<td>'.$varos['city'].'</td>'
+             . '<td><div style="display: flex">'
+             . '</div></td>'
+         . '</tr></form>';
+        }
+    }
+   
+
+
+
+
+
 
    
 
