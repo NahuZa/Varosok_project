@@ -14,7 +14,7 @@
 
     $tabla=new osztaly();
     
-        if (isset($_POST['megye-button'])) {
+        /*if (isset($_POST['megye-button'])) {
                 $id =$_POST['megye-button'];
                 $varosok = $tabla->varosok($id);
                 foreach ($varosok as $varos)
@@ -26,7 +26,36 @@
                     . '</div></td>'
                 . '</tr></form>';
                 }
-            }
+        }*/
+
+    if (isset($_POST['megye-button'])) {
+        $id =$_POST['megye-button'];
+        $karakterek = $tabla->getAbc($id);
+        foreach ($karakterek as $karakter)
+        {
+            echo '<form method="POST" action="">'
+            .'<tr>'
+                .'<td> <button class="button" value="'.$karakter.'" name="abc-button">'.$karakter.'</button></td>'
+                . '<td><div style="display: flex">'
+                . '</div></td>'
+            . '</tr></form>';
+        }
+    }
+
+    if (isset($_POST['abc-button'])) {
+        $ch = $_POST['abc-button'];
+        $cities = $tabla->getCityByCh($ch);
+        foreach ($cities as $city)
+        {
+        echo '<form method="POST" action="">'
+        .'<tr>'
+            .'<td>'.$city['city'].'</td>'
+            .'<td>'.$city['zip_code'].'</td>'
+            . '<td><div style="display: flex">'
+            . '</div></td>'
+        . '</tr></form>';
+        }
+    }
     ?>
     
 </body>
