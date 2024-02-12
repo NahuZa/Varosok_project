@@ -34,6 +34,18 @@
         . '</div></td>'
     . '</tr></form>';
    }
+
+   $varosok = $tabla->varosok();
+   /*foreach ($varosok as $varos)
+   {
+    echo '<form method="POST" action="">'
+    .'<tr>'
+        .'<td>'.$varos['city'].'</td>'
+        . '<td><div style="display: flex">'
+        . '</div></td>'
+    . '</tr></form>';
+   }*/
+
    
 
 
