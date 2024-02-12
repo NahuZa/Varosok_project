@@ -19,6 +19,7 @@
     <?php
 
     require_once('osztaly.php');
+    
 
    $tabla=new osztaly();
 
@@ -30,20 +31,13 @@
     {
      echo '<form method="POST" action="varosok.php">'
      .'<tr>'
-         .'<td> <button class="button" value="'.$megye['countyId'].'" name="megye-button">'.$megye['county'].'</button> </td>'
+         .'<td> <button  class="button" value="'.$megye['countyId'].'" name="megye-button">'.$megye['county'].'</button> </td>'
          . '<td><div style="display: flex">'
          . '</div></td>'
      . '</tr></form>';
     }
+ 
 
-   
-
-
-
-
-
-
-   
 
 
     ?>

@@ -8,56 +8,43 @@
     <title>Listázás</title>
 </head>
 <body class="hatter">
-    <?php
+    <div style="width:100%;">
+        <div class="lista">
+            <h2 class="kisCimek">Városok:</h2>
 
-    require_once("osztaly.php");
+        <table class="tablazat">
+            <tr class="tablazat">
+                <th >Települések</th>
+                <th>Irányító számok</th>
+            </tr>
+        <?php
 
-    $tabla=new osztaly();
-    
+        require_once("osztaly.php");
+
+        $tabla=new osztaly();
+        
         if (isset($_POST['megye-button'])) {
-                $id =$_POST['megye-button'];
-                $varosok = $tabla->varosok($id);
-                foreach ($varosok as $varos)
-                {
-                echo '<form method="POST" action="">'
-                .'<tr>'
-                    .'<td>'.$varos['city'].'</td>'
-                    .'<td>'.$varos['zip_code'].'</td>'
-                    . '<td><div style="display: flex">'
-                    . '</div></td>'
-                . '</tr></form>';
-                }
-        }
-
-   /* if (isset($_POST['megye-button'])) {
-        $id =$_POST['megye-button'];
-        $karakterek = $tabla->getAbc($id);
-        foreach ($karakterek as $karakter)
-        {
+            $id =$_POST['megye-button'];
+            $varosok = $tabla->varosok($id);
+            foreach ($varosok as $varos)
+            {
             echo '<form method="POST" action="">'
             .'<tr>'
-                .'<td> <button class="button" value="'.$karakter.'" name="abc-button">'.$karakter.'</button></td>'
+                .'<td>'.$varos['city'].'</td>'
+                .'<td>'.$varos['zip_code'].'</td>'
                 . '<td><div style="display: flex">'
                 . '</div></td>'
             . '</tr></form>';
-        }
+            }
     }
+        ?>
+        </table>
+        </div>
 
-    if (isset($_POST['abc-button'])) {
-        $ch = $_POST['abc-button'];
-        $cities = $tabla->getCityByCh($ch,$id);
-        foreach ($cities as $city)
-        {
-        echo '<form method="POST" action="">'
-        .'<tr>'
-            .'<td>'.$city['city'].'</td>'
-            .'<td>'.$city['zip_code'].'</td>'
-            . '<td><div style="display: flex">'
-            . '</div></td>'
-        . '</tr></form>';
-        }
-    }*/
-    ?>
-    
+        <div class="bal">
+                <h2 >Statisztikák:</h2>
+                <p>kukimuki
+        </div>
+    </div>
 </body>
 </html>

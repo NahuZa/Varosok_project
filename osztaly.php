@@ -2,7 +2,7 @@
 
 class Osztaly{
     protected $mysqli;
-        function __construct($host='localhost', $user='root', $password='', $db='csv_db 14')
+        function __construct($host='localhost', $user='root', $password='', $db='csv_db 8')
         {
             $this->mysqli=new mysqli($host, $user, $password, $db);
             if ($this->mysqli->connect_errno)
@@ -46,11 +46,11 @@ class Osztaly{
 
         public function getCityByCh($ch): array
         {
-            $query="SELECT city,zip_code FROM citiescodes WHERE city LIKE '$ch%' /*AND countyId = $id*/ ORDER BY city";
+            $query="SELECT city,zip_code FROM citiescodes WHERE city LIKE '$ch%' ORDER BY city";
             
             return $this->mysqli->query($query)->fetch_all(MYSQLI_ASSOC);
         }
     
 }
 
-?>
+?>  

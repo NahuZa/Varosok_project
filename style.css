@@ -29,3 +29,25 @@
     background-color: white;
     color: black;
 }
+
+.lista{
+    width: 50%;
+    border-right:solid ;
+    float: left;
+    
+}
+
+.kisCimek{
+    padding-left: 40%;
+}
+
+.bal{
+    width: 50%;
+    float: right;
+}
+
+.tablazat{
+    text-align: center;
+    padding-left: 25%;
+    
+}
