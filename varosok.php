@@ -42,8 +42,28 @@
         </div>
 
         <div class="bal">
-                <h2 >Statisztikák:</h2>
-                <p>kukimuki
+            <h2 class="kisCimek">Statisztikák:</h2>
+
+            <table class="tablazat">
+            <?php
+                if (isset($_POST['megye-button'])) {
+                $id =$_POST['megye-button'];
+                $statisztikak = $tabla->getStats($id);
+                foreach ($statisztikak as $statisztika)
+                {
+                echo '<form method="POST" action="">'
+                .'<tr>'
+                    .'<td>Megyeszékhelye: '.$statisztika['megyeSzekhely'].'<br></td>'
+                . '</tr>'
+                . '<tr>'
+                    .'<td>Lakossága: '.$statisztika['lakossag'].' Fő</td>'
+                    . '<td><div style="display: flex">'
+                    . '</div></td>'
+                . '</tr></form>';
+                }
+            }
+            ?>
+            </table>
         </div>
     </div>
 </body>
