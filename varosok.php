@@ -41,8 +41,8 @@
         </table>
         </div>
 
-        <div class="bal">
-            <h2 class="kisCimek">Statisztikák:</h2>
+        <div>
+            <h2 class="statisztikacim">Statisztikák:</h2>
 
             <table class="tablazat">
             <?php
@@ -63,8 +63,14 @@
                 }
             }
             ?>
+                <tr>
+                    <td><iframe class="uristenverybig" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Flag_of_Budapest_%282011-%29.svg/112px-Flag_of_Budapest_%282011-%29.svg.png" title="description"></iframe></td>
+                </tr>
             </table>
+            
         </div>
     </div>
+
+
 </body>
 </html>
