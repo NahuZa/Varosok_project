@@ -12,8 +12,8 @@
         <div class="lista">
             <h2 class="kisCimek">Városok:</h2>
 
-        <table class="tablazat">
-            <tr class="tablazat">
+        <table class="tablazatL">
+            <tr class="tablazatL">
                 <th >Települések</th>
                 <th>Irányító számok</th>
             </tr>
@@ -44,7 +44,7 @@
         <div>
             <h2 class="statisztikacim">Statisztikák:</h2>
 
-            <table class="tablazat">
+            <table class="tablazatR">
             <?php
                 if (isset($_POST['megye-button'])) {
                 $id =$_POST['megye-button'];
@@ -53,19 +53,23 @@
                 {
                 echo '<form method="POST" action="">'
                 .'<tr>'
-                    .'<td>Megyeszékhelye: '.$statisztika['megyeSzekhely'].'<br></td>'
+                    .'<td>Megyeszékhelye: </td><td>'.$statisztika['megyeszekhely'].'<br></td>'
                 . '</tr>'
                 . '<tr>'
-                    .'<td>Lakossága: '.$statisztika['lakossag'].' Fő</td>'
+                    .'<td>Lakossága:</td><td> '.$statisztika['lakossag'].' Fő</td>'
                     . '<td><div style="display: flex">'
                     . '</div></td>'
-                . '</tr></form>';
+                . '</tr></form>'
+                .'<tr>'
+                    .'<td>A megye zászlója: </td><td><iframe class="uristenverybig" src="'.$statisztika['zaszlo'].'"style="border:none;" scrolling="no" allowfullscreen title="description"></iframe></td>'
+                .'</tr>'
+                .'<tr>'
+                    .'<td>A megye címere: </td><td><iframe class="uristenverybig" src="'.$statisztika['cimer'].'"style="border:none;" scrolling="no" allowfullscreen title="description"></iframe></td>'
+                .'</tr>';
                 }
             }
             ?>
-                <tr>
-                    <td><iframe class="uristenverybig" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Flag_of_Budapest_%282011-%29.svg/112px-Flag_of_Budapest_%282011-%29.svg.png" title="description"></iframe></td>
-                </tr>
+
             </table>
             
         </div>

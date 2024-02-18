@@ -46,19 +46,38 @@
     float: right;
 }
 
-.tablazat{
+.tablazatL{
     text-align: center;
-    padding-left: 25%;
+    padding-left: 35%;
+    
+    
+}
+
+.tablazatR{
+    text-align: center;
+    padding-left: 15%;
     
     
 }
 
 .statisztikacim{
-    padding-left: 30%;
+    padding-left: 75%;
+
 }
 
-.uristenverybig{
-    height: auto;
-    width: auto;
-    float: right;
+.container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+    overflow: hidden;
+}
+
+.container iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
 }

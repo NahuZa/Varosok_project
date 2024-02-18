@@ -2,7 +2,7 @@
 
 class Osztaly{
     protected $mysqli;
-        function __construct($host='localhost', $user='root', $password='', $db='csv_db 9')
+        function __construct($host='localhost', $user='root', $password='', $db='csv_db 10')
         {
             $this->mysqli=new mysqli($host, $user, $password, $db);
             if ($this->mysqli->connect_errno)
@@ -53,7 +53,7 @@ class Osztaly{
 
         public function getStats($id): array
         {
-            $query = "SELECT megyeSzekhely,lakossag FROM counties WHERE countyId = $id";
+            $query = "SELECT megyeszekhely,lakossag,cimer,zaszlo FROM counties WHERE countyId = $id";
 
             return $this->mysqli->query($query)->fetch_all(MYSQLI_ASSOC);
         }
