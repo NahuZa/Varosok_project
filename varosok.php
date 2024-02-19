@@ -63,10 +63,10 @@
                     . '</div></td>'
                 . '</tr></form>'
                 .'<tr>'
-                    .'<td>A megye zászlója: </td><td><iframe src="'.$statisztika['zaszlo'].'"style="border:none;" scrolling="no" allowfullscreen title="description"></iframe></td>'
+                    .'<td>A megye zászlója: </td><td><img src="'.$statisztika['zaszlo']. '"width="100" height="50"></td>'
                 .'</tr>'
                 .'<tr>'
-                    .'<td>A megye címere: </td><td><iframe src="'.$statisztika['cimer'].'"style="border:none;" scrolling="no" allowfullscreen title="description"></iframe></td>'
+                    .'<td>A megye címere: </td><td><img src="'.$statisztika['cimer'].'"></td>'
                 .'</tr>';
                 }
             }
