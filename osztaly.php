@@ -2,7 +2,7 @@
 
 class Osztaly{
     protected $mysqli;
-        function __construct($host='localhost', $user='root', $password='', $db='csv_db 14')
+        function __construct($host='localhost', $user='root', $password='', $db='csv_db 8')
         {
             $this->mysqli=new mysqli($host, $user, $password, $db);
             if ($this->mysqli->connect_errno)
@@ -95,6 +95,16 @@ class Osztaly{
             return $this->mysqli->query($query)->fetch_all(MYSQLI_ASSOC);
         }
     
+        public function update($iranyitoszambe, $ujId, $ujVaros, $ujIranyotoszam){
+
+            $query="UPDATE citiescodes SET countyId='$ujId', city='$ujVaros', zip_code='$ujIranyotoszam' WHERE zip_code=$iranyitoszambe";
+
+            if ($this->mysqli->query($query) === TRUE) {
+                echo "Az adatok sikeresen frissítve.\n";
+            } else {
+                echo "Hiba az adatok frissítése közben: " . $this->mysqli->error;
+            }
+        }
 }
 
 ?>  

@@ -13,7 +13,7 @@
             <h1>Megyék és Városaik</h1>
         </div>
     </header>
-
+    <div class="lista">
     <h2>Válassza ki a megyét:</h2> 
 
     <?php
@@ -36,34 +36,33 @@
          . '</div></td>'
      . '</tr></form>';
     }
-
-    echo'<p>Új város adatainak megadása:</p>
+    ?>
+    </div>
+    <div class="adatbekeres">
+    <?php
+    echo'<h3>Új város adatainak megadása:</h3>
     <form action="" method="POST">
         CountyId: <input type="number" name="newCountyId" id="newCountyId"><br>
         Név: <input type="text" id="nev" name="nev"><br>
         Irányítószám: <input type="number" id="zipCode" name="zipCode"><br>
-        <input type="submit" name="adatokkuldese" value="Adatok elküldése">
-        <input type="submit" name="delete" value="Törlés">
+        <input class="button" type="submit" name="adatokkuldese" value="Adatok elküldése">
+        <input  class="button" type="submit" name="delete" value="Törlés">
     </form>';
 
-    echo'<p>Város keresése: </p>
-    <form action="" method="POST">
-        Irányítószám: <input type="number" id="zipCode" name="zipCode"><br>
-        <input type="submit" name="kereses" value="Keresés">
-    </form>';
+   
 
 require_once("osztaly.php");
 
 $tabla=new osztaly();
 
-if (isset($_POST['adatokuldese'])) {
+if (isset($_POST['adatokkuldese'])) {
     $countyId = $_POST['newCountyId'];
     $nev = $_POST['nev'];
     $iranyitoszam = $_POST['zipCode'];
 
     $tabla->ujvarosok($countyId,$nev,$iranyitoszam);
+}      
 
-}
  
 if (isset($_POST['delete'])) {
     $countyId = $_POST['newCountyId'];
@@ -71,11 +70,16 @@ if (isset($_POST['delete'])) {
     $iranyitoszam = $_POST['zipCode'];
 
     $tabla->delete($countyId,$nev,$iranyitoszam);
-
 }
 
+echo'<h3>Város keresése: </h3>
+<form action="" method="POST">
+    Irányítószám: <input type="number" id="keresesCode" name="keresesCode"><br>
+    <input class="button" type="submit" name="kereses" value="Keresés">
+</form>';
+
 if (isset($_POST['kereses'])) {
-    $iranyitoszam = $_POST['zipCode'];
+    $iranyitoszam = $_POST['keresesCode'];
 
     $eredmenyek = $tabla->kereses($iranyitoszam);
 
@@ -97,8 +101,32 @@ if (isset($_POST['kereses'])) {
 }
 
 
+echo '
+    </form>
+    <h3>Adatok szerkesztése</h3>
+    <form method="POST" action="">
+        <label for="iranyitoszambe">Szerkesztendő adat Irányítószáma:</label><br>
+            <input type="number" id="iranyitoszambe" name="iranyitoszambe" required><br>
+        <label for="uj_id">Új ID:</label><br>
+            <input type="number" id="uj_id" name="uj_id" required><br>
+        <label for="uj_city">Új város:</label><br>
+            <input type="text" id="uj_city" name="uj_city" required><br>
+        <label for="uj_iranyitoszam">Új irányítószám:</label><br>
+            <input type="number" id="uj_iranyitoszam" name="uj_iranyitoszam" required><br><br>
+            <input class="button" type="submit" name="edit" value="Frissítés">
+    </form>
+    ';
 
+if(isset($_POST['edit'])){
+    $iranyitoszambe=$_POST['iranyitoszambe'];
+    $ujId=$_POST['uj_id'];
+    $ujVaros=$_POST['uj_city'];
+    $ujIranyitoszam=$_POST['uj_iranyitoszam'];
+
+    $tabla->update($iranyitoszambe,$ujId,$ujVaros,$ujIranyitoszam);
+}
 
     ?>
+</div>
 </body>
 </html>
