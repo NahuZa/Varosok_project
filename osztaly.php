@@ -2,7 +2,7 @@
 
 class Osztaly{
     protected $mysqli;
-        function __construct($host='localhost', $user='root', $password='', $db='csv_db 8')
+        function __construct($host='localhost', $user='root', $password='', $db='csv_db 14')
         {
             $this->mysqli=new mysqli($host, $user, $password, $db);
             if ($this->mysqli->connect_errno)
@@ -81,6 +81,18 @@ class Osztaly{
             else {
                 echo "Hiba az adatok törlése közben.". $this->mysqli->error;
             }
+        }
+
+        public function kereses($zipCode): array
+        {
+            $query = "SELECT * FROM citiescodes WHERE zip_code=$zipCode";
+            return $this->mysqli->query($query)->fetch_all(MYSQLI_ASSOC);
+        }
+
+        public function keresMegye($countyId):array
+        {
+            $query = "SELECT county FROM counties WHERE countyId=$countyId";
+            return $this->mysqli->query($query)->fetch_all(MYSQLI_ASSOC);
         }
     
 }

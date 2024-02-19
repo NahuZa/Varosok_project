@@ -46,6 +46,12 @@
         <input type="submit" name="delete" value="Törlés">
     </form>';
 
+    echo'<p>Város keresése: </p>
+    <form action="" method="POST">
+        Irányítószám: <input type="number" id="zipCode" name="zipCode"><br>
+        <input type="submit" name="kereses" value="Keresés">
+    </form>';
+
 require_once("osztaly.php");
 
 $tabla=new osztaly();
@@ -67,6 +73,30 @@ if (isset($_POST['delete'])) {
     $tabla->delete($countyId,$nev,$iranyitoszam);
 
 }
+
+if (isset($_POST['kereses'])) {
+    $iranyitoszam = $_POST['zipCode'];
+
+    $eredmenyek = $tabla->kereses($iranyitoszam);
+
+    foreach ($eredmenyek as $eredmeny)
+    {
+        $megyek = $tabla->keresMegye($eredmeny['countyId']);
+    
+        foreach ($megyek as $megye)
+        {
+            echo '<form method="POST" action="varosok.php">'
+            .'<tr>'
+                .'<td>Megye:'.$megye['county'].'  </td>'
+                . '<td>Város: '.$eredmeny['city'].' </td>'
+                .'</td>Irányítószám: '.$eredmeny['zip_code'].' </td>'
+            . '</tr></form>';
+        }  
+    }  
+
+}
+
+
 
 
     ?>
