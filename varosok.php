@@ -19,13 +19,15 @@
             </tr>
         <?php
 
-        require_once("osztaly.php");
+        require_once('osztaly.php');
+    
 
         $tabla=new osztaly();
-        
+
+
         if (isset($_POST['megye-button'])) {
             $id =$_POST['megye-button'];
-            $varosok = $tabla->varosok($id);
+            $varosok = $tabla->varosok($id);    
             foreach ($varosok as $varos)
             {
             echo '<form method="POST" action="">'
@@ -61,10 +63,10 @@
                     . '</div></td>'
                 . '</tr></form>'
                 .'<tr>'
-                    .'<td>A megye zászlója: </td><td><iframe class="uristenverybig" src="'.$statisztika['zaszlo'].'"style="border:none;" scrolling="no" allowfullscreen title="description"></iframe></td>'
+                    .'<td>A megye zászlója: </td><td><iframe src="'.$statisztika['zaszlo'].'"style="border:none;" scrolling="no" allowfullscreen title="description"></iframe></td>'
                 .'</tr>'
                 .'<tr>'
-                    .'<td>A megye címere: </td><td><iframe class="uristenverybig" src="'.$statisztika['cimer'].'"style="border:none;" scrolling="no" allowfullscreen title="description"></iframe></td>'
+                    .'<td>A megye címere: </td><td><iframe src="'.$statisztika['cimer'].'"style="border:none;" scrolling="no" allowfullscreen title="description"></iframe></td>'
                 .'</tr>';
                 }
             }

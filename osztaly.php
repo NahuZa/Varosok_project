@@ -2,7 +2,7 @@
 
 class Osztaly{
     protected $mysqli;
-        function __construct($host='localhost', $user='root', $password='', $db='csv_db 10')
+        function __construct($host='localhost', $user='root', $password='', $db='csv_db 14')
         {
             $this->mysqli=new mysqli($host, $user, $password, $db);
             if ($this->mysqli->connect_errno)
@@ -56,6 +56,20 @@ class Osztaly{
             $query = "SELECT megyeszekhely,lakossag,cimer,zaszlo FROM counties WHERE countyId = $id";
 
             return $this->mysqli->query($query)->fetch_all(MYSQLI_ASSOC);
+        }
+
+        
+
+        public function ujvarosok($countyId,$nev,$zipCode){
+
+            $query="INSERT INTO citiescodes VALUES ('$countyId', '$nev', '$zipCode')";
+
+            if ($this->mysqli->query($query) == TRUE) {
+                echo "Az adatok sikeresen feltöltve.";
+            }
+            else {
+                echo "Hiba az adatok feltöltése közben.". $this->mysqli->error;
+            }
         }
     
 }

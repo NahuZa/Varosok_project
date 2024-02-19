@@ -36,6 +36,27 @@
          . '</div></td>'
      . '</tr></form>';
     }
+
+    echo'<p>Új város adatainak megadása:</p>
+    <form action="" method="POST">
+        CountyId: <input type="number" name="newCountyId" id="newCountyId"><br>
+        Név: <input type="text" id="nev" name="nev"><br>
+        Irányítószám: <input type="number" id="zipCode" name="zipCode"><br>
+        <input type="submit" name="submit" value="Adatok elküldése">
+    </form>';
+
+require_once("osztaly.php");
+
+$tabla=new osztaly();
+
+if (isset($_POST['submit'])) {
+    $countyId = $_POST['newCountyId'];
+    $nev = $_POST['nev'];
+    $iranyitoszam = $_POST['zipCode'];
+
+    $tabla->ujvarosok($countyId,$nev,$iranyitoszam);
+
+}
  
 
 
