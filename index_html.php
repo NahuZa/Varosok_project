@@ -42,14 +42,15 @@
         CountyId: <input type="number" name="newCountyId" id="newCountyId"><br>
         Név: <input type="text" id="nev" name="nev"><br>
         Irányítószám: <input type="number" id="zipCode" name="zipCode"><br>
-        <input type="submit" name="submit" value="Adatok elküldése">
+        <input type="submit" name="adatokkuldese" value="Adatok elküldése">
+        <input type="submit" name="delete" value="Törlés">
     </form>';
 
 require_once("osztaly.php");
 
 $tabla=new osztaly();
 
-if (isset($_POST['submit'])) {
+if (isset($_POST['adatokuldese'])) {
     $countyId = $_POST['newCountyId'];
     $nev = $_POST['nev'];
     $iranyitoszam = $_POST['zipCode'];
@@ -58,7 +59,14 @@ if (isset($_POST['submit'])) {
 
 }
  
+if (isset($_POST['delete'])) {
+    $countyId = $_POST['newCountyId'];
+    $nev = $_POST['nev'];
+    $iranyitoszam = $_POST['zipCode'];
 
+    $tabla->delete($countyId,$nev,$iranyitoszam);
+
+}
 
 
     ?>

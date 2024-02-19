@@ -2,7 +2,7 @@
 
 class Osztaly{
     protected $mysqli;
-        function __construct($host='localhost', $user='root', $password='', $db='csv_db 14')
+        function __construct($host='localhost', $user='root', $password='', $db='csv_db 8')
         {
             $this->mysqli=new mysqli($host, $user, $password, $db);
             if ($this->mysqli->connect_errno)
@@ -69,6 +69,17 @@ class Osztaly{
             }
             else {
                 echo "Hiba az adatok feltöltése közben.". $this->mysqli->error;
+            }
+        }
+
+        public function delete($id, $nev, $zipCode){
+            $query=("DELETE FROM citiescodes WHERE countyId=$id AND city='$nev' AND zip_code=$zipCode");
+ 
+            if ($this->mysqli->query($query) == TRUE) {
+                echo "Az adatokat sikeresen töröltük.";
+            }
+            else {
+                echo "Hiba az adatok törlése közben.". $this->mysqli->error;
             }
         }
     
