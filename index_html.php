@@ -42,7 +42,13 @@
     <?php
     echo'<h3>Új város adatainak megadása:</h3>
     <form action="" method="POST">
-        CountyId: <input type="number" name="newCountyId" id="newCountyId"><br>
+    <select name="newCountyId" id="newCountyId">';
+    foreach ($megyek as $megye)
+    {
+        echo '<option value="'.$megye['countyId'].'">'.$megye['county'].'</option>';
+    }
+   echo '</select>
+        <br>
         Név: <input type="text" id="nev" name="nev"><br>
         Irányítószám: <input type="number" id="zipCode" name="zipCode"><br>
         <input class="button" type="submit" name="adatokkuldese" value="Adatok elküldése">
@@ -113,7 +119,7 @@ echo '
             <input type="text" id="uj_city" name="uj_city" required><br>
         <label for="uj_iranyitoszam">Új irányítószám:</label><br>
             <input type="number" id="uj_iranyitoszam" name="uj_iranyitoszam" required><br><br>
-            <input class="button" type="submit" name="edit" value="Frissítés">
+            <input class="button"    type="submit" name="edit" value="Frissítés">
     </form>
     ';
 
