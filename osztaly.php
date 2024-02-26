@@ -2,7 +2,7 @@
 
 class Osztaly{
     protected $mysqli;
-        function __construct($host='localhost', $user='root', $password='', $db='csv_db 14')
+        function __construct($host='localhost', $user='root', $password='', $db='csv_db 8')
         {
             $this->mysqli=new mysqli($host, $user, $password, $db);
             if ($this->mysqli->connect_errno)
@@ -83,15 +83,9 @@ class Osztaly{
             }
         }
 
-        public function keresesI($zipCode): array
+        public function kereses($zipCode): array
         {
             $query = "SELECT * FROM citiescodes WHERE zip_code=$zipCode";
-            return $this->mysqli->query($query)->fetch_all(MYSQLI_ASSOC);
-        }
-
-        public function keresesV($nev): array
-        {
-            $query = "SELECT * FROM citiescodes WHERE city='$nev'";
             return $this->mysqli->query($query)->fetch_all(MYSQLI_ASSOC);
         }
 
@@ -126,7 +120,7 @@ class Osztaly{
 
         public function megyeKereses($string):array
         {
-            $query = "SELECT * FROM counties WHERE county = '$string'";
+            $query = "SELECT * FROM counties WHERE county LIKE '%$string%'";
 
             return $this->mysqli->query($query)->fetch_all(MYSQLI_ASSOC);
         }
