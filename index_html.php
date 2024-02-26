@@ -67,7 +67,7 @@ if (isset($_POST['adatokkuldese'])) {
     $iranyitoszam = $_POST['zipCode'];
 
     $tabla->ujvarosok($countyId,$nev,$iranyitoszam);
-    unset($_POST);
+    
 }      
 
  
@@ -77,19 +77,26 @@ if (isset($_POST['delete'])) {
     $iranyitoszam = $_POST['zipCode'];
 
     $tabla->delete($countyId,$nev,$iranyitoszam);
-    unset($_POST);
+    
 }
 
 echo'<h3>Város keresése: </h3>
 <form action="" method="POST">
     Irányítószám: <input type="number" id="keresesCode" name="keresesCode"><br>
+    név: <input type="text" id="keresesName" name="keresesName"><br>
     <input class="button" type="submit" name="kereses" value="Keresés">
 </form>';
 
 if (isset($_POST['kereses'])) {
     $iranyitoszam = $_POST['keresesCode'];
+    $nev = $_POST['keresesName'];
+    if (!empty($iranyitoszam)) {
+        $eredmenyek = $tabla->keresesI($iranyitoszam);
+    }else {
+        $eredmenyek = $tabla->keresesV($nev);
+    }
 
-    $eredmenyek = $tabla->kereses($iranyitoszam);
+    
 
     foreach ($eredmenyek as $eredmeny)
     {
@@ -105,7 +112,7 @@ if (isset($_POST['kereses'])) {
             . '</tr></form>';
         }  
     } 
-    unset($_POST); 
+     
 
 }
 
@@ -133,7 +140,7 @@ if(isset($_POST['edit'])){
     $ujIranyitoszam=$_POST['uj_iranyitoszam'];
 
     $tabla->update($iranyitoszambe,$ujId,$ujVaros,$ujIranyitoszam);
-    unset($_POST);
+    
 }
 
 echo'    </form>
@@ -165,7 +172,7 @@ echo'    </form>
     if (isset($_POST['deleteCounty'])) {
         $nev=$_POST['new_county'];
         $tabla->megyeTorles($nev);
-        unset($_POST);
+        
     }
 
     echo'<h3>Megye keresése: </h3>
@@ -188,7 +195,7 @@ echo'    </form>
                 .'</td>Lakosság: '.$eredmenyM['lakossag'].' </td>'
             . '</tr></form>';    
         } 
-        unset($_POST); 
+         
 
     }
     ?>
