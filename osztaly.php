@@ -112,23 +112,29 @@ class Osztaly{
             }
         }
 
-        public function ujMegye($nev,$megyeszekhely, $lakossag){
-
-            $query="INSERT INTO counties (county,megyeszekhely,lakossag) VALUES ('$nev', '$megyeszekhely', $lakossag);";
-
-            if ($this->mysqli->query($query) == TRUE) {
-                echo "Az adatok sikeresen feltöltve.";
-            }
-            else {
-                echo "Hiba az adatok feltöltése közben.". $this->mysqli->error;
-            }
-        }
-
         public function megyeKereses($string):array
         {
             $query = "SELECT * FROM counties WHERE county = '$string'";
 
             return $this->mysqli->query($query)->fetch_all(MYSQLI_ASSOC);
+        }
+
+        public function ujMegye($nev,$megyeszekhely, $lakossag){
+            if(empty($this->megyeKereses($nev)))
+            {
+                $query="INSERT INTO counties (county,megyeszekhely,lakossag) VALUES ('$nev', '$megyeszekhely', $lakossag);";
+
+                if ($this->mysqli->query($query) == TRUE) {
+                    echo "Az adatok sikeresen feltöltve.";
+                }
+                else {
+                    echo "Hiba az adatok feltöltése közben.". $this->mysqli->error;
+                }
+            }else {
+                echo '';
+            }
+
+
         }
 
         public function megyeTorles($nev)
