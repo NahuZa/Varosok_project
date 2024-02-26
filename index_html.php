@@ -42,7 +42,7 @@
     <?php
     echo'<h3>Új város adatainak megadása:</h3>
     <form action="" method="POST">
-    <select name="newCountyId" id="newCountyId">';
+    Megye: <select name="newCountyId" id="newCountyId">';
     foreach ($megyek as $megye)
     {
         echo '<option value="'.$megye['countyId'].'">'.$megye['county'].'</option>';
@@ -67,6 +67,7 @@ if (isset($_POST['adatokkuldese'])) {
     $iranyitoszam = $_POST['zipCode'];
 
     $tabla->ujvarosok($countyId,$nev,$iranyitoszam);
+    unset($_POST);
 }      
 
  
@@ -76,6 +77,7 @@ if (isset($_POST['delete'])) {
     $iranyitoszam = $_POST['zipCode'];
 
     $tabla->delete($countyId,$nev,$iranyitoszam);
+    unset($_POST);
 }
 
 echo'<h3>Város keresése: </h3>
@@ -102,7 +104,8 @@ if (isset($_POST['kereses'])) {
                 .'</td>Irányítószám: '.$eredmeny['zip_code'].' </td>'
             . '</tr></form>';
         }  
-    }  
+    } 
+    unset($_POST); 
 
 }
 
@@ -113,7 +116,7 @@ echo '
     <form method="POST" action="">
         <label for="iranyitoszambe">Szerkesztendő adat Irányítószáma:</label><br>
             <input type="number" id="iranyitoszambe" name="iranyitoszambe" required><br>
-        <label for="uj_id">Új ID:</label><br>
+        <label for="uj_id">Megye:</label><br>
             <input type="number" id="uj_id" name="uj_id" required><br>
         <label for="uj_city">Új város:</label><br>
             <input type="text" id="uj_city" name="uj_city" required><br>
@@ -130,8 +133,64 @@ if(isset($_POST['edit'])){
     $ujIranyitoszam=$_POST['uj_iranyitoszam'];
 
     $tabla->update($iranyitoszambe,$ujId,$ujVaros,$ujIranyitoszam);
+    unset($_POST);
 }
 
+echo'    </form>
+    <h3>Új megye</h3>
+    <form method="POST" action="">
+        Név:<br> <input type="text" id="new_county" name="new_county" required><br>
+        <label for="megyeszekhely">Megyeszékhley:</label><br>
+            <input type="text" id="megyeszekhely" name="megyeszekhely" ><br>
+        <label for="lakossag">Lakosság:</label><br>
+            <input type="number" id="lakossag" name="lakossag" ><br><br>
+        <input class="button" type="submit" name="newCounty" value="Adatok elküldése">
+        <input  class="button" type="submit" name="deleteCounty" value="Törlés">
+    </form>
+    ';
+
+
+    if(isset($_POST['newCounty'])){
+        $nev=$_POST['new_county'];
+        $megyeszekhely=$_POST['megyeszekhely'];
+        $lakossag=$_POST['lakossag'];
+        if (empty($lakossag)) {
+            $lakossag = 0;
+        }
+        
+        $tabla->ujMegye($nev,$megyeszekhely,$lakossag);
+        unset($_POST['new_county']);
+    }
+
+    if (isset($_POST['deleteCounty'])) {
+        $nev=$_POST['new_county'];
+        $tabla->megyeTorles($nev);
+        unset($_POST);
+    }
+
+    echo'<h3>Megye keresése: </h3>
+    <form action="" method="POST">
+        Megye neve: <br><input type="text" id="keres_megye" name="keres_megye"><br>
+        <input class="button" type="submit" name="keresMegye" value="Keresés">
+    </form>';
+
+    if (isset($_POST['keresMegye'])) {
+        $neve = $_POST['keres_megye'];
+
+        $eredmenyekM = $tabla->megyeKereses($neve);
+
+        foreach ($eredmenyekM as $eredmenyM)
+        {
+            echo '<form method="POST" action="">'
+            .'<tr>'
+                .'<td>Megye: '.$eredmenyM['county'].'  </td>'
+                . '<td>Megyeszékhely: '.$eredmenyM['megyeszekhely'].' </td>'
+                .'</td>Lakosság: '.$eredmenyM['lakossag'].' </td>'
+            . '</tr></form>';    
+        } 
+        unset($_POST); 
+
+    }
     ?>
 </div>
 </body>

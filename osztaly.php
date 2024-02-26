@@ -2,7 +2,7 @@
 
 class Osztaly{
     protected $mysqli;
-        function __construct($host='localhost', $user='root', $password='', $db='csv_db 8')
+        function __construct($host='localhost', $user='root', $password='', $db='csv_db 14')
         {
             $this->mysqli=new mysqli($host, $user, $password, $db);
             if ($this->mysqli->connect_errno)
@@ -105,6 +105,38 @@ class Osztaly{
                 echo "Hiba az adatok frissítése közben: " . $this->mysqli->error;
             }
         }
+
+        public function ujMegye($nev,$megyeszekhely, $lakossag){
+
+            $query="INSERT INTO counties (county,megyeszekhely,lakossag) VALUES ('$nev', '$megyeszekhely', $lakossag);";
+
+            if ($this->mysqli->query($query) == TRUE) {
+                echo "Az adatok sikeresen feltöltve.";
+            }
+            else {
+                echo "Hiba az adatok feltöltése közben.". $this->mysqli->error;
+            }
+        }
+
+        public function megyeKereses($string):array
+        {
+            $query = "SELECT * FROM counties WHERE county LIKE '%$string%'";
+
+            return $this->mysqli->query($query)->fetch_all(MYSQLI_ASSOC);
+        }
+
+        public function megyeTorles($nev)
+        {
+            $query=("DELETE FROM counties WHERE county = '$nev'");
+ 
+            if ($this->mysqli->query($query) == TRUE) {
+                echo "Az adatokat sikeresen töröltük.";
+            }
+            else {
+                echo "Hiba az adatok törlése közben.". $this->mysqli->error;
+            }
+        }
+
 }
 
 ?>  
